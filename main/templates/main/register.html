@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk-ua">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+        <title>Реєстрація</title>
+        <link rel="stylesheet" href="{% static 'register/assets/bootstrap/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'register/assets/css/styles.min.css' %}" />
+    </head>
+    <body>
+        <!-- Start: Login Form Clean -->
+        <section class="register">
+            <form method="post">
+                {% csrf_token %}
+                <h2 class="visually-hidden">Login Form</h2>
+                <div class="illustration">
+                    <h1>
+                        Реєстрація
+                    </h1>
+                </div>
+                {%if messages%}
+                <div class="alert alert-success" role="alert">
+                    {% for message in messages %}
+                    <strong>Помилка:</strong> {{ message }} <br/>
+                    {% endfor %}
+                </div>
+                {%endif%}
+                <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Логін" /></div>
+                <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Email" /></div>
+                <div class="mb-3"><input class="form-control" type="text" name="id" placeholder="Студентський ID" /></div>
+                <div class="mb-3"><input class="form-control" type="text" name="ident_code" placeholder="Індентифікаційний код" /></div>
+                <div class="mb-3"><input class="form-control" type="password" name="password1" placeholder="Пароль" /></div>
+                <div class="mb-3"><input class="form-control" type="password" name="password2" placeholder="Повторіть пароль" /></div>
+                <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Зареєструватися</button></div>
+                <a class="forgot" href="signin">Вже зареєстровані? Увійти</a>
+            </form>
+        </section>
+        <!-- End: Login Form Clean -->
+        <script src="{% static 'register/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    </body>
+</html>

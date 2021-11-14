@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk-ua">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>
+            Вхід
+        </title>
+        <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}">
+    </head>
+    
+    <body>
+
+        <section class="login-clean">
+            <form method="post">
+                {% csrf_token %}
+                <h2 class="visually-hidden">
+                    Login Form
+                </h2>
+                <div class="illustration">
+                    <h1>
+                        Вхід
+                    </h1>
+                </div>
+                {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    <strong>Помилка:</strong> {{ message }}
+                </div>
+                {% endfor %}
+                <div class="mb-3">
+                    <input class="form-control" type="text" name="username" placeholder="Логін"/>
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" type="password" name="password" placeholder="Пароль"/>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary d-block w-100" type="submit">
+                        Увійти
+                    </button>
+                </div>
+                <a class="forgot" href="signup">Зареєструватися</a>
+            </form>
+        </section>
+        <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}">
+        </script>
+    </body>
+
+</html>
