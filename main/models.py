@@ -16,6 +16,15 @@ class student(models.Model):
     class Meta:
         db_table = "student"
 
+class student_subject(models.Model):
+    student_id = models.BigIntegerField()
+    subject_id = models.BigIntegerField()
+    
+    def __str__(self):
+        return str(self.subject_id)
+    class Meta:
+        db_table = "student_subject"
+
 class group(models.Model):
     group_name = models.CharField(max_length=100)
     student_count = models.IntegerField()
@@ -37,7 +46,8 @@ class appraisal(models.Model):
     description = models.CharField(max_length=100)
     appraisal = models.IntegerField()
     date = models.DateField()
-    subject_id = models.IntegerField()
+    subject_id = models.BigIntegerField()
+    student_id = models.BigIntegerField()
 
     def __str__(self):
         return self.description
@@ -46,8 +56,6 @@ class appraisal(models.Model):
 
 class subject(models.Model):
     subject_name = models.CharField(max_length=100)
-    student_id = models.BigIntegerField()
-    apprailsals_count = models.IntegerField()
 
     def __str__(self):
         return self.subject_name

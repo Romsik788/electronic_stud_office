@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
-from main.models import appraisal, faculty, group, subject
+from main.models import appraisal, faculty, group, student_subject, subject
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -25,7 +25,6 @@ def index(request):
         
         if user is not None:
             login(request, user)
-            # messages.success(request, "Logged In Sucessfully!!")
             return redirect('/main')
         else:
             messages.error(request, "Логін або пароль неправильний")
@@ -87,6 +86,7 @@ def main_page(request):
     try:
         IStudent = student.objects.get(user_id = request.user.id)
     except:
+        if request.user.is_superuser: return redirect('/admin')
         return redirect('/activate')
     IGroup = group.objects.get(id = IStudent.group_id)
     IFaculty = faculty.objects.get(id = IGroup.id_faculty)
@@ -105,10 +105,11 @@ def marks(request):
         IStudent = student.objects.get(user_id = request.user.id)
     except:
         return redirect('/activate')
-    ISubject = list(subject.objects.filter(student_id__exact = IStudent.id))
-    IMarks = list(appraisal.objects.filter(subject_id = ISubject[0].id))
-    for i in range(1, len(ISubject)):
-        IMarks += list(appraisal.objects.filter(subject_id = ISubject[i].id))
+    IMarks = list(appraisal.objects.filter(student_id = IStudent.id))
+    ISubjectList = list(student_subject.objects.filter(student_id = IStudent.id))
+    ISubject = list(subject.objects.filter(id = ISubjectList[0].subject_id))
+    for i in range(1, len(ISubjectList)):
+        ISubject += list(subject.objects.filter(id = ISubjectList[i].subject_id))
     context = {
         'subject': ISubject,
         'mark': IMarks,
