@@ -15,10 +15,6 @@ class student(models.Model):
         return self.student_name
     class Meta:
         db_table = "student"
-    
-class castom_user(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=15)
 
 class group(models.Model):
     group_name = models.CharField(max_length=100)
@@ -43,6 +39,8 @@ class appraisal(models.Model):
     date = models.DateField()
     subject_id = models.IntegerField()
 
+    def __str__(self):
+        return self.description
     class Meta:
         db_table = "appraisals"
 
@@ -51,6 +49,8 @@ class subject(models.Model):
     student_id = models.BigIntegerField()
     apprailsals_count = models.IntegerField()
 
+    def __str__(self):
+        return self.subject_name
     class Meta:
         db_table = "subject"
 
@@ -59,5 +59,7 @@ class teacher(models.Model):
     position = CharField(max_length=100)
     faculty_id = IntegerField()
 
+    def __str__(self):
+        return self.name
     class Meta:
         db_table = "teachers"

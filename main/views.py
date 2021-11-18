@@ -1,10 +1,10 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
-from main.models import appraisal, castom_user, faculty, group, subject
+from main.models import appraisal, faculty, group, subject
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.core.mail import EmailMessage, send_mail
+from django.core.mail import send_mail
 from main.models import student
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
