@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 18 2021 г., 21:24
+-- Время создания: Дек 22 2021 г., 11:10
 -- Версия сервера: 8.0.24
 -- Версия PHP: 8.0.8
 
@@ -198,29 +198,6 @@ CREATE TABLE `groups` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `roles`
---
-
-CREATE TABLE `roles` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `description` varchar(1000) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `roles_users`
---
-
-CREATE TABLE `roles_users` (
-  `user_id` bigint UNSIGNED NOT NULL,
-  `role_id` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `student`
 --
 
@@ -268,7 +245,10 @@ CREATE TABLE `teachers` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
   `position` varchar(100) NOT NULL,
-  `faculty_id` bigint UNSIGNED NOT NULL
+  `faculty_id` bigint UNSIGNED NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `identification_code` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -278,23 +258,9 @@ CREATE TABLE `teachers` (
 --
 
 CREATE TABLE `teacher_subject` (
+  `id` bigint UNSIGNED NOT NULL,
   `teacher_id` bigint UNSIGNED NOT NULL,
   `subject_id` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `user`
---
-
-CREATE TABLE `user` (
-  `id` bigint UNSIGNED NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `phone` varchar(15) NOT NULL,
-  `password` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `login` varchar(64) NOT NULL,
-  `last_login` datetime(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -399,19 +365,6 @@ ALTER TABLE `groups`
   ADD KEY `id_faculty` (`id_faculty`);
 
 --
--- Индексы таблицы `roles`
---
-ALTER TABLE `roles`
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Индексы таблицы `roles_users`
---
-ALTER TABLE `roles_users`
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `role_id` (`role_id`) USING BTREE;
-
---
 -- Индексы таблицы `student`
 --
 ALTER TABLE `student`
@@ -445,15 +398,9 @@ ALTER TABLE `teachers`
 -- Индексы таблицы `teacher_subject`
 --
 ALTER TABLE `teacher_subject`
+  ADD UNIQUE KEY `id` (`id`),
   ADD KEY `subject_id` (`subject_id`),
   ADD KEY `teacher_id` (`teacher_id`);
-
---
--- Индексы таблицы `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -532,12 +479,6 @@ ALTER TABLE `groups`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT для таблицы `student`
 --
 ALTER TABLE `student`
@@ -562,9 +503,9 @@ ALTER TABLE `teachers`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `user`
+-- AUTO_INCREMENT для таблицы `teacher_subject`
 --
-ALTER TABLE `user`
+ALTER TABLE `teacher_subject`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -617,13 +558,6 @@ ALTER TABLE `django_admin_log`
 --
 ALTER TABLE `groups`
   ADD CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`id_faculty`) REFERENCES `facultys` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
---
--- Ограничения внешнего ключа таблицы `roles_users`
---
-ALTER TABLE `roles_users`
-  ADD CONSTRAINT `roles_users` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `roles_users_gdfgdf` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `student`

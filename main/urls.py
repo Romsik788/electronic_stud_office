@@ -1,8 +1,9 @@
 from django.urls import path
-from django.urls.conf import include
 
 from main import views
 
+
+handler404 = views.CodeError404
 urlpatterns = [
     path('signin', views.index),
     path('signup', views.signup),
@@ -10,5 +11,6 @@ urlpatterns = [
     path('marks', views.marks),
     path('signout', views.signout),
     path('activate', views.activate),
+    path('subjects', views.subjects),
     path('', views.redirect_to_main),
 ]

@@ -1,0 +1,481 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk_ua">
+    <head>
+        <title>Page Title</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            /* Style the body */
+            body {
+                font-family: Arial;
+                margin: 0;
+                background-color: #ceecf5;
+            }
+
+            /* Header/logo Title */
+            .header {
+                padding: 35px;
+                text-align: center;
+                background: #ceecf5;
+                color: #4169e1;
+            }
+
+            /* Increase the font size of the heading */
+            .header h1 {
+                font-size: 40px;
+            }
+
+            /* Style the top navigation bar */
+            .site_navbar {
+                overflow: hidden;
+                background-color: #4169e1;
+            }
+
+            /* Style the navigation bar links */
+            .site_navbar a {
+                float: left;
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 20px;
+                text-decoration: none;
+            }
+
+            /* Right-aligned link */
+            .site_navbar a.right {
+                float: right;
+            }
+
+            /* Change color on hover */
+            .site_navbar a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            /* Column container */
+            .row {
+                display: -ms-flexbox; /* IE10 */
+                display: flex;
+                -ms-flex-wrap: wrap; /* IE10 */
+                flex-wrap: wrap;
+            }
+
+            /* Create two unequal columns that sits next to each other */
+            /* Sidebar/left column */
+            .side {
+                -ms-flex: 30%; /* IE10 */
+                flex: 30%;
+                background-color: #f1f1f1;
+                padding: 20px;
+                margin-left: 20;
+            }
+
+            /* Main column */
+            .main {
+                -ms-flex: 70%; /* IE10 */
+                flex: 70%;
+                background-color: white;
+                padding: 20px;
+
+                width: 100%;
+                padding-bottom: 100%;
+            }
+            .title {
+                margin-left: 100px;
+            }
+
+            /* Fake image, just for this example */
+            .fakeimg {
+                background-color: #aaa;
+                width: 100%;
+                padding: 20px;
+            }
+
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td,
+            th {
+                border: 1px solid #ceecf5;
+                text-align: left;
+                padding: 8px;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 20px;
+                text-align: center;
+                font-size: 10px;
+                background: #ddd;
+
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                color: black;
+                text-align: center;
+            }
+
+            .tr1 {
+                display: table-row;
+            }
+
+            .table1 {
+            }
+
+            /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+            @media screen and (max-width: 700px) {
+                .row {
+                    flex-direction: column;
+                }
+            }
+            @charset "UTF-8";
+            @import url(https://fonts.googleapis.com/css?family=Open + Sans:400, 300&subset=latin, cyrillic);
+            *,
+            ::after,
+            ::before {
+                box-sizing: border-box;
+            }
+
+            /* demo контейнер */
+            .demo {
+                max-width: 1024px;
+                padding: 0 20px;
+                margin: 5% 10%;
+            }
+            /* скрываем чекбоксы и блоки с содержанием */
+            .hide,
+            .hide + label ~ div {
+                display: none;
+            }
+            /* вид текста label */
+            .hide + label {
+                margin: 0;
+                padding: 0;
+                color: #4169e1;
+                cursor: pointer;
+                display: inline-block;
+            }
+            /* вид текста label при активном переключателе */
+            .hide:checked + label {
+                color: black;
+                border-bottom: 0;
+            }
+            /* когда чекбокс активен показываем блоки с содержанием  */
+            .hide:checked + label + div {
+                display: block;
+                background: #efefef;
+                margin-left: 20px;
+                padding: 10px;
+                /* чуточку анимации при появлении */
+                -webkit-animation: fade ease-in 0.5s;
+                -moz-animation: fade ease-in 0.5s;
+                animation: fade ease-in 0.5s;
+            }
+            /* анимация при появлении скрытых блоков */
+            @-moz-keyframes fade {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            @-webkit-keyframes fade {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            @keyframes fade {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            .hide + label:before {
+                background-color: #1e90ff;
+                color: #fff;
+                content: "\002B";
+                display: block;
+                float: left;
+                font-size: 14px;
+                font-weight: bold;
+                height: 16px;
+                line-height: 16px;
+                margin: 4px 5px;
+                text-align: center;
+                width: 16px;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+            }
+            .hide:checked + label:before {
+                content: "\2212";
+            }
+
+            /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+            @media screen and (max-width: 400px) {
+                .site_navbar a {
+                    float: none;
+                    width: 100%;
+                }
+            }
+
+            [contenteditable]:hover:after {
+                font-style: italic;
+                font-size: 12px;
+                font-family: sans-serif;
+                color: #ccc;
+                .text-stroke(0);
+            }
+
+            [contenteditable]:hover,
+            [contenteditable]:focus {
+                background: #ffffd3;
+            }
+
+            [contenteditable]:focus {
+                padding: 5px;
+            }
+
+            [contenteditable]:focus:after {
+                content: "";
+            }
+        </style>
+
+        <script>
+            function add(id) {
+                var table = id.parentNode.parentNode.parentNode.parentNode;
+                var temp = id.parentNode.parentNode.parentNode
+                table.removeChild(temp)
+                console.log(table)
+                var div  = document.createElement("form");
+                div.setAttribute("id", "null")
+                div.innerHTML =
+                '{% csrf_token %}' +
+                    '<div class="container" style="height: 43px;">' +
+                        '<div class="row">' +
+                            '<div class="col-md-3" style="height: 43px;border: 1px none var(--bs-cyan);border-right-style: dashed;border-bottom-style: solid;border-left-style: solid;"><input class="form-control" type="text" style="margin-top: 2px;" name="desc" value="{{ m.description }}"></div>' + 
+                            '<div class="col-md-3" style="height: 43px;border: 1px none var(--bs-cyan) ;border-right-style: dashed;border-bottom-style: solid;border-left-width: 1px;border-left-style: dashed;"><input class="form-control" type="date" style="margin-top: 2px;" name="date" value="{{ m.date|date:'Y-m-d' }}"></div>' +
+                            '<div class="col-md-3" style="height: 43px;border: 1px none var(--bs-cyan);border-right-style: dashed;border-bottom-style: solid;border-left-width: 1px;border-left-style: dashed;"><input class="form-control" type="number" style="margin-top: 2px;" name="appraisal" value="{{ m.appraisal }}"></div>' +
+                            '<div class="col-md-3" style="height: 43px;border: 1px solid var(--bs-cyan) ;border-top-style: none;border-left-style: dashed;"><button class="btn btn-primary" type="button" onclick="saveRow(this)"style="border-style: none; padding: 0px; border-radius: 19px; height: 30px;margin-top: 6px;width: 93px;">Зберегти</button><button class="btn btn-primary" type="button" onclick="deleteRow(this)" style="margin: 0px;background: var(--bs-red);color: var(--bs-white);border-style: none;padding: 0px; border-radius: 19px; height: 30px;margin-top: 6px;margin-left: 13%;width: 93px;">Видалити</button></div>'+
+                        '</div>' +
+                    '</div>' +
+                '</form>';
+                table.appendChild(div);
+                div = document.createElement("div");
+                div.setAttribute("class", "container");
+                div.setAttribute("style", "height: 43px;");
+                div.innerHTML =
+                    '<div class="row" style="height: 43px;">' +
+                        '<div class="col-md-3" style="height: 43px;border-right: 1px dashed var(--bs-cyan);border-bottom: 1px solid var(--bs-cyan);border-left: 1px solid var(--bs-cyan);"></div>' +
+                        '<div class="col-md-3" style="height: 43px;border-right: 1px dashed var(--bs-cyan);border-bottom: 1px solid var(--bs-cyan);border-left: 1px dashed var(--bs-cyan);"></div>' +
+                        '<div class="col-md-3" style="height: 43px;border-right: 1px dashed var(--bs-cyan);border-bottom: 1px solid var(--bs-cyan);border-left: 1px dashed var(--bs-cyan);"></div>' +
+                        '<div class="col-md-3" style="height: 43px;border-right: 1px solid var(--bs-cyan);border-bottom: 1px solid var(--bs-cyan);border-left: 1px dashed var(--bs-cyan);"><button class="btn btn-primary" type="button" onclick="add(this)" style="margin-left: 0px;width: 93px;margin-top: 6px;padding: 0px; border-radius: 19px; height: 30px;">Додати</button></div>'+
+                    '</div>' +
+                '</div>';
+                table.appendChild(div);
+            }
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            function getDivID(node) {
+                var ancestor = node;
+                var formID;
+                while( ancestor && ancestor !== document ) {
+                    if ( /^div$/i.test( ancestor.nodeName ) ) {
+                        formID = ancestor.id;
+                        break;
+                    }
+                    ancestor = node.parentNode;
+                }
+                return formID
+            }
+            async function deleteRow(f) {
+                var table = f.parentNode.parentNode.parentNode.parentNode;
+                const id = doStuff(table);
+                var temp = f.parentNode.parentNode.parentNode
+                const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                form = {id: id}
+                let response = await fetch('subjects', {
+                    //credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "X-CSRFToken": csrftoken,
+                        },
+                    method: 'DELETE',
+                    body: JSON.stringify(form)
+                });
+
+                table.removeChild(temp)
+            }
+            function doStuff(node) {
+                var ancestor = node;
+                var formID;
+                while( ancestor && ancestor !== document ) {
+                    if ( /^form$/i.test( ancestor.nodeName ) ) {
+                        formID = ancestor.id;
+                        break;
+                    }
+                    ancestor = node.parentNode;
+                }
+                return formID
+            }
+
+            async function saveRow(f) {
+                var table = f.parentNode.parentNode.parentNode.parentNode;
+                var get_stud_id = f.parentNode.parentNode.parentNode.parentNode.parentNode
+                var get_subj_id = f.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+                form = new FormData(table);
+                const id = doStuff(table);
+                const stud_id = getDivID(get_stud_id)
+                const subj_id = getDivID(get_subj_id)
+                const desc = form.get("desc");
+                const date = form.get("date");
+                const appraisal = form.get("appraisal");
+                const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                send_form = {id: id,
+                             description: desc,
+                             date: date,
+                             appraisal: appraisal,
+                             stud_id: stud_id,
+                             subj_id: subj_id};
+                
+                var get_mark_id;
+                fetch('subjects', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "X-CSRFToken": csrftoken},
+                    method: 'PUT',
+                    body: JSON.stringify(send_form)
+                })
+                .then((response) => response.json())
+                .then((Object) => {
+                    get_mark_id = Object.id;
+                    get_mark_desc = Object.desc
+                    console.log(get_mark_desc)
+                    get_mark_date = Object.date
+                    get_mark_app = Object.appraisal
+                    if (get_mark_id !== "null") {
+                        var temp = f.parentNode.parentNode.parentNode
+                        var table = f.parentNode.parentNode.parentNode.parentNode;
+                        table.removeChild(temp)
+                        var div  = document.createElement("form");
+                        div.setAttribute("id", get_mark_id)
+                        div.innerHTML =
+                        '{% csrf_token %}' +
+                            '<div class="container" style="height: 43px;">' +
+                                '<div class="row">' +
+                                    '<div class="col-md-3" style="height: 43px;border: 1px none var(--bs-cyan);border-right-style: dashed;border-bottom-style: solid;border-left-style: solid;"><input class="form-control" type="text" style="margin-top: 2px;" name="desc" value=\"' + get_mark_desc + '\"></div>' + 
+                                    '<div class="col-md-3" style="height: 43px;border: 1px none var(--bs-cyan) ;border-right-style: dashed;border-bottom-style: solid;border-left-width: 1px;border-left-style: dashed;"><input class="form-control" type="date" style="margin-top: 2px;" name="date" value=' + get_mark_date + '></div>' +
+                                    '<div class="col-md-3" style="height: 43px;border: 1px none var(--bs-cyan);border-right-style: dashed;border-bottom-style: solid;border-left-width: 1px;border-left-style: dashed;"><input class="form-control" type="number" min="0" max="100" style="margin-top: 2px;" name="appraisal" value='+ get_mark_app + '></div>' +
+                                    '<div class="col-md-3" style="height: 43px;border: 1px solid var(--bs-cyan) ;border-top-style: none;border-left-style: dashed;"><button class="btn btn-primary" type="button" onclick="saveRow(this)"style="border-style: none; padding: 0px; border-radius: 19px; height: 30px;margin-top: 6px;width: 93px;">Зберегти</button><button class="btn btn-primary" type="button" onclick="deleteRow(this)" style="margin: 0px;background: var(--bs-red);color: var(--bs-white);border-style: none;padding: 0px; border-radius: 19px; height: 30px;margin-top: 6px;margin-left: 13%;width: 93px;">Видалити</button></div>'+
+                                '</div>' +
+                            '</div>' +
+                        '</form>';
+                        table.appendChild(div);
+                    }
+                });
+            }
+            
+        </script>
+        <link rel="stylesheet" href="{% static 'main/assets/bootstrap/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'main/assets/css/styles.min.css' %}" />
+    </head>
+    <body>
+        <div class="header">
+            <h1>Особистий кабінет викладача</h1>
+        </div>
+
+        <div class="site_navbar">
+            <a href="main">Головна&nbsp;</a>
+            <a href="subjects">Предмети</a>
+
+            <a href="signout" class="right">Вихід</a>
+        </div>
+
+        <div class="row">
+            <div class="main">
+              {% block content %}
+                <div class="title"></div>
+                {% for i in subject %}
+                <div id = {{i.id}} class="container" style="height: auto; margin-top: 15px;">
+                    <div class="row" style="height: auto;">
+                        <div class="col-md-6" style="height: auto;max-width: 18%;border-top-width: 1px;border-top-style: solid;border-right-width: 1px;border-right-style: dashed;border-bottom-width: 1px;border-bottom-style: solid;border-left: 1px solid var(--bs-gray-dark);">
+                            <h6 style="margin-top: 6px;">{{i.subject_name}}</h6>
+                        </div>
+                        <div class="col-md-6" style="height: auto;border-top-width: 1px;border-top-style: solid;border-right-width: 1px;border-right-style: solid;border-bottom-width: 1px;border-bottom-style: solid;width: 1080px;max-width: 82%;">
+                            {% for s in student %}
+                                {% for u in student_sub %}
+                                  {% if s.id == u.student_id and i.id == u.subject_id %}
+                                <input class="hide" id="hd-{{s.id}}" type="checkbox" />
+                                <label for="hd-{{s.id}}">{{s.student_name}}</label>
+                                <div id = "{{s.id}}">
+                                    <div class="container" style="height: 40px;">
+                                        <div class="row" style="height: 40px;">
+                                            <div class="col-md-3" style="height: 40px;border: 1px solid var(--bs-cyan) ;"><strong>Назва</strong></div>
+                                            <div class="col-md-3" style="height: 40px;border: 1px solid var(--bs-cyan) ;"><strong>Дата</strong></div>
+                                            <div class="col-md-3" style="height: 40px;border: 1px solid var(--bs-cyan) ;"><strong>Оцінка</strong></div>
+                                            <div class="col-md-3" style="height: 40px;border-bottom: 1px solid var(--bs-cyan) ;"></div>
+                                        </div>
+                                    </div>
+                                    {% for m in mark %}
+                                    {% if m.student_id == s.id and m.subject_id == i.id %}
+                                    <form id = "{{m.id}}"> {% csrf_token %}
+                                        <div class="container" style="height: 43px;">
+                                            <div class="row">
+                                                <div class="col-md-3" style="height: 43px;border: 1px none var(--bs-cyan);border-right-style: dashed;border-bottom-style: solid;border-left-style: solid;"><input class="form-control" type="text" style="margin-top: 2px;" name="desc" value="{{ m.description }}"></div>
+                                                <div class="col-md-3" style="height: 43px;border: 1px none var(--bs-cyan) ;border-right-style: dashed;border-bottom-style: solid;border-left-width: 1px;border-left-style: dashed;"><input class="form-control" type="date" style="margin-top: 2px;" name="date" value="{{ m.date|date:'Y-m-d' }}"></div>
+                                                <div class="col-md-3" style="height: 43px;border: 1px none var(--bs-cyan);border-right-style: dashed;border-bottom-style: solid;border-left-width: 1px;border-left-style: dashed;"><input class="form-control" type="number" min="0" max="100" style="margin-top: 2px;" name="appraisal" value="{{ m.appraisal }}"></div>
+                                                <div class="col-md-3" style="height: 43px;border: 1px solid var(--bs-cyan) ;border-top-style: none;border-left-style: dashed;"><button class="btn btn-primary" type="button" onclick="saveRow(this)"style="border-style: none; padding: 0px; border-radius: 19px; height: 30px;margin-top: 6px;width: 93px;">Зберегти</button><button class="btn btn-primary" type="button" onclick="deleteRow(this)" style="margin: 0px;background: var(--bs-red);color: var(--bs-white);border-style: none;padding: 0px; border-radius: 19px; height: 30px;margin-top: 6px;margin-left: 13%;width: 93px;">Видалити</button></div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {%endif%}
+                                    {%endfor%}
+                                    <div class="container" style="height: 43px;">
+                                        <div class="row" style="height: 43px;">
+                                            <div class="col-md-3" style="height: 43px;border-right: 1px dashed var(--bs-cyan);border-bottom: 1px solid var(--bs-cyan);border-left: 1px solid var(--bs-cyan);"></div>
+                                            <div class="col-md-3" style="height: 43px;border-right: 1px dashed var(--bs-cyan);border-bottom: 1px solid var(--bs-cyan);border-left: 1px dashed var(--bs-cyan);"></div>
+                                            <div class="col-md-3" style="height: 43px;border-right: 1px dashed var(--bs-cyan);border-bottom: 1px solid var(--bs-cyan);border-left: 1px dashed var(--bs-cyan);"></div>
+                                            <div class="col-md-3" style="height: 43px;border-right: 1px solid var(--bs-cyan);border-bottom: 1px solid var(--bs-cyan);border-left: 1px dashed var(--bs-cyan);"><button class="btn btn-primary" type="button" onclick="add(this)" style="margin-left: 0px;width: 93px;margin-top: 6px;padding: 0px; border-radius: 19px; height: 30px;">Додати</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endif%}
+                                {%endfor%}
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endblock %}
+            </div>
+        </div>
+
+        <div class="footer">
+            <h2>Чернігів 2021</h2>
+        </div>
+    </body>
+</html>

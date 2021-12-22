@@ -26,8 +26,11 @@ SECRET_KEY = 'django-insecure-c!i6$veg(u!nd8-r7z_c51vm3*-_2_44sj7s-8j%vhi@s#f7k&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+
 ALLOWED_HOSTS = [
-    'dab6-46-211-160-107.ngrok.io',
+    'ed1e-46-211-31-184.ngrok.io',
     '127.0.0.1'
 ]
 
@@ -134,6 +137,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [ os.path.join(BASE_DIR,'static') ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

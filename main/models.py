@@ -7,7 +7,7 @@ class student(models.Model):
     course = models.IntegerField()
     budget = models.BooleanField()
     group_id = models.IntegerField()
-    user_id = models.IntegerField()
+    user_id = models.BigIntegerField()
     phone = models.CharField(max_length=15)
     identification_code = models.IntegerField()
 
@@ -24,6 +24,13 @@ class student_subject(models.Model):
         return str(self.subject_id)
     class Meta:
         db_table = "student_subject"
+
+class teacher_subject(models.Model):
+    teacher_id = models.BigIntegerField()
+    subject_id = models.BigIntegerField()
+
+    class Meta:
+        db_table = "teacher_subject"
 
 class group(models.Model):
     group_name = models.CharField(max_length=100)
@@ -66,6 +73,9 @@ class teacher(models.Model):
     name = CharField(max_length=100)
     position = CharField(max_length=100)
     faculty_id = IntegerField()
+    user_id = models.BigIntegerField()
+    phone = models.CharField(max_length=15)
+    identification_code = models.IntegerField()
 
     def __str__(self):
         return self.name
