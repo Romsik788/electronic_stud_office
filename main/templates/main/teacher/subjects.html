@@ -3,16 +3,10 @@
 <!DOCTYPE html>
 <html lang="uk_ua">
     <head>
-        <title>Page Title</title>
+        <title>Предмети</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>
-            /* Style the body */
-            body {
-                font-family: Arial;
-                margin: 0;
-                background-color: #ceecf5;
-            }
 
             /* Header/logo Title */
             .header {
@@ -22,10 +16,6 @@
                 color: #4169e1;
             }
 
-            /* Increase the font size of the heading */
-            .header h1 {
-                font-size: 40px;
-            }
 
             /* Style the top navigation bar */
             .site_navbar {
@@ -54,14 +44,6 @@
                 color: black;
             }
 
-            /* Column container */
-            .row {
-                display: -ms-flexbox; /* IE10 */
-                display: flex;
-                -ms-flex-wrap: wrap; /* IE10 */
-                flex-wrap: wrap;
-            }
-
             /* Create two unequal columns that sits next to each other */
             /* Sidebar/left column */
             .side {
@@ -80,30 +62,10 @@
                 padding: 20px;
 
                 width: 100%;
-                padding-bottom: 100%;
+                padding-bottom: 30%;
             }
             .title {
                 margin-left: 100px;
-            }
-
-            /* Fake image, just for this example */
-            .fakeimg {
-                background-color: #aaa;
-                width: 100%;
-                padding: 20px;
-            }
-
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            td,
-            th {
-                border: 1px solid #ceecf5;
-                text-align: left;
-                padding: 8px;
             }
 
             /* Footer */
@@ -112,19 +74,11 @@
                 text-align: center;
                 font-size: 10px;
                 background: #ddd;
-
                 left: 0;
                 bottom: 0;
                 width: 100%;
                 color: black;
                 text-align: center;
-            }
-
-            .tr1 {
-                display: table-row;
-            }
-
-            .table1 {
             }
 
             /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
@@ -257,7 +211,6 @@
                 var table = id.parentNode.parentNode.parentNode.parentNode;
                 var temp = id.parentNode.parentNode.parentNode
                 table.removeChild(temp)
-                console.log(table)
                 var div  = document.createElement("form");
                 div.setAttribute("id", "null")
                 div.innerHTML =
@@ -374,7 +327,6 @@
                 .then((Object) => {
                     get_mark_id = Object.id;
                     get_mark_desc = Object.desc
-                    console.log(get_mark_desc)
                     get_mark_date = Object.date
                     get_mark_app = Object.appraisal
                     if (get_mark_id !== "null") {
@@ -475,7 +427,7 @@
         </div>
 
         <div class="footer">
-            <h2>Чернігів 2021</h2>
+            <h6>Чернігів 2021</h6>
         </div>
     </body>
 </html>

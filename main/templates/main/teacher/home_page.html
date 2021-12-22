@@ -3,32 +3,15 @@
 <!DOCTYPE html>
 <html lang="uk_ua">
     <head>
-        <title>Page Title</title>
+        <title>Головна</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>
-            * {
-                box-sizing: border-box;
-            }
-
-            /* Style the body */
-            body {
-                font-family: Arial;
-                margin: 0;
-                background-color: #ceecf5;
-            }
-
-            /* Header/logo Title */
             .header {
                 padding: 35px;
                 text-align: center;
                 background: #ceecf5;
                 color: #4169e1;
-            }
-
-            /* Increase the font size of the heading */
-            .header h1 {
-                font-size: 40px;
             }
 
             /* Style the top navigation bar */
@@ -58,45 +41,6 @@
                 color: black;
             }
 
-            .data {
-                margin-left: 30px;
-                font-size: 20px;
-            }
-
-            /* Column container */
-            .row {
-                display: -ms-flexbox; /* IE10 */
-                display: flex;
-                -ms-flex-wrap: wrap; /* IE10 */
-                flex-wrap: wrap;
-            }
-
-            /* Create two unequal columns that sits next to each other */
-            /* Sidebar/left column */
-            .side {
-                -ms-flex: 30%; /* IE10 */
-                flex: 30%;
-                background-color: #f1f1f1;
-                padding: 20px;
-            }
-
-            /* Main column */
-            .main {
-                -ms-flex: 70%; /* IE10 */
-                flex: 70%;
-                background-color: white;
-                padding: 20px;
-                position: fixed;
-                width: 100%;
-                padding-bottom: 100%;
-            }
-
-            /* Fake image, just for this example */
-            .fakeimg {
-                background-color: #aaa;
-                width: 100%;
-                padding: 20px;
-            }
 
             /* Footer */
             .footer {
@@ -112,20 +56,6 @@
                 text-align: center;
             }
 
-            /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
-            @media screen and (max-width: 700px) {
-                .row {
-                    flex-direction: column;
-                }
-            }
-
-            /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-            @media screen and (max-width: 400px) {
-                .site_navbar a {
-                    float: none;
-                    width: 100%;
-                }
-            }
         </style>
         <link rel="stylesheet" href="{% static 'main/assets/bootstrap/css/bootstrap.min.css' %}" />
         <link rel="stylesheet" href="{% static 'main/assets/css/styles.min.css' %}" />
