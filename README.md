@@ -1,29 +1,29 @@
 # Electronic Student Office
 
-Електронна система для оцінювання студентів.
+Electornical system to asses srudents
 
-## Встановлення
+## Installation
 
-Необхідно інсталювати Python 3.9 або вище. Дана система використовує залежності Django, PyMySQL та Bcrypt, тому їх необхідно встановити якщо вони не встановлені до цього.
+You have to Install Python 3.9 or higher.This system uses addons those like Django, PyMySQL and Bcrypt, and because of that you have to have them pre-installed. 
 
 ```bash
 pip install django pymysql bcrypt
 ```
-Тепер необхідно встановити саму систему, якщо встановлений git то можна командою
+Now you have to Install the system it self, if you have git then you can do that with usage of command
 ```bash
 git clone https://github.com/Romsik788/electronic_stud_office
 ```
-Або архів за [посиланням](https://github.com/Romsik788/electronic_stud_office/archive/refs/heads/main.zip) який потім необхідно розпакувати
-## Використання
+Or with usage of an archive stored via link [link](https://github.com/Romsik788/electronic_stud_office/archive/refs/heads/main.zip) which you have to unpackage later
+## Usage
 
-Перед запуском Django сервера, необхідно зробити наступне:
+Before you laych Django server, you have to do next:
 
-1. Імпортувати файл бази даних **electronic_student_office.sql** на сервер MySQL. Рекомендуємо MySQL 8.0 або вище. В якості сервера можна використовувати [OpenServer](https://ospanel.io/).
-2. Створити суперкористувача Django, який зможе керувати всією системою та взаємодіяти з БД через адмін-панель. Для створення необхідно зайти в папку проекта (в ній має бути файл **manage.py**) та виконати наступну команду та виконати подальші вказівки
+1. Import database file І **electronic_student_office.sql** onto MySQL server. Preferably MySQL 8.0 or higher. As a server you may use [OpenServer](https://ospanel.io/).
+2. Create superuser Django, which is able to control whole system and change data in database via admin-panel. To create you have to open project folder(folder has to contain next **manage.py**) and do next command and complete the following. 
 ```bash
 python manage.py createsuperuser
 ```
-3. Тепер необхідно вказати Django шлях до БД. Для цього необхідно відкрити файл [settings.py](elecoffice/settings.py) та знайти наступний код
+3. Now you have to create path between Django and you DataBase. To do that you have to open next file [settings.py](elecoffice/settings.py) and find the following code.
 ```python
 DATABASES = {
     'default': {
@@ -36,21 +36,20 @@ DATABASES = {
     }
 }
 ```
-Дані поля необхідні для доступну до БД, і їх необхідно змінити під ваші налаштування.
+These fields are used to gain an access to DataBase, and they have to be changed according to your settings.
 
-**NAME** - назва бази даних. По замовчуванню коли ви імпортуєте це *electronic_stud_office*
+**NAME** - DataBase name. Default when you import that *electronic_stud_office*
 
-**USER** та **PASSWORD** - ім'я та пароль користувача. Тут потрібно вказати ім'я та пароль користувача, який матиме доступ на вашому MySQL сервері до бази даних *electronic_stud_office*
+**USER** and **PASSWORD** - User name and password. Here you have to mention your name and password ,which is going to gain an access to your DataBase onto your MySQL server  *electronic_stud_office*
 
-**HOST** та **PORT** - Адреса та порт вашого MySQL сервера.
+**HOST** and **PORT** - Adress and port of your MySQL server.
 
-Тепер можна запустити Django сервер
+Now you can Launch Django server
 ```bash
 python manage.py runserver
 ```
 
-## Внесок
-Запити на виправлення вітаються. Для серйозних змін, будь ласка, спочатку відкрийте питання, щоб обговорити, що ви хочете змінити.
-
-## Ліцензія
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## License
 [MIT](https://choosealicense.com/licenses/mit/)
